@@ -1,0 +1,63 @@
+/* styles.css */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.weather-card {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.weather-card h2 {
+  margin-bottom: 10px;
+}
+
+.weather-card p {
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Add to styles.css */
+.weather-info img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.forecast-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.forecast-item {
+  flex: 1 1 200px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-item p {
+  margin: 5px 0;
+}
