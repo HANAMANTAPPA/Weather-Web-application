@@ -10,7 +10,7 @@ const API_KEY = "51PRyL27bzM8MyfKo0bOJVAdGRB0DQXB";
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecastWeather, setForecastWeather] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState("chicago");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -21,15 +21,18 @@ function App() {
   const fetchData = async () => {
     setLoading(true);
     try {
+      console.log(
+        `https://api.tomorrow.io/v4/weather/realtime?location=${location}&apikey=${API_KEY}`
+      );
       const currentWeatherResponse = await axios.get(
         // `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
         // `https://api.tomorrow.io/v4/weather/realtime?location=toronto&apikey=${API_KEY}`
-        `https://api.tomorrow.io/v4/weather/realtime?location=new%20york&apikey=${API_KEY}`
+        `https://api.tomorrow.io/v4/weather/realtime?location=${location}&apikey=${API_KEY}`
       );
       const forecastWeatherResponse = await axios.get(
         //`http://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=metric`
         // `https://api.tomorrow.io/v4/weather/forecast?location=new%20york&apikey=${API_KEY}`
-        `https://api.tomorrow.io/v4/weather/forecast?location=new%20york&apikey=${API_KEY}`
+        `https://api.tomorrow.io/v4/weather/forecast?location=${location}&apikey=${API_KEY}`
       );
       setCurrentWeather(currentWeatherResponse.data);
       setForecastWeather(forecastWeatherResponse.data);
@@ -51,9 +54,14 @@ function App() {
     <div>
       <LocationSettings onLocationChange={handleLocationChange} />
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {currentWeather && <RealTimeWeather data={currentWeather} />}
-      {forecastWeather && <ForecastedWeather data={forecastWeather} />}
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        <RealTimeWeather data={currentWeather} searchLocation={location} />
+      )}
+      {error ? <p>{error}</p> : <ForecastedWeather data={forecastWeather} />}
+      {/* {currentWeather && <RealTimeWeather data={currentWeather} searchLocation={ location} />}
+      {forecastWeather && <ForecastedWeather data={forecastWeather} />} */}
     </div>
   );
 }

@@ -8,12 +8,14 @@ const RealTimeWeather = ({ data }) => {
   const temperature = data.data.values.temperature;
   const humidity = data.data.values.humidity;
   // console.log("\n", data.data.values.temperature);
-  console.log("\n", data.location.name);
+  const clocation = data.location.name;
+  console.log("\n", clocation);
 
   return (
     <div className="container">
       <div className="weather-card">
         <h2>Current Weather </h2>
+        <h3>{clocation}</h3>
         <div className="weather-info">
           {/* <img
             src={`http://openweathermap.org/img/wn/${weatherIcon}.png`}
